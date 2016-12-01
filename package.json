@@ -1,0 +1,29 @@
+{
+  "name": "text-adventure",
+  "version": "1.0.7",
+  "description": "A notification text adventure",
+  "main": "build/index.js",
+  "watch": {
+    "build": "src/**/*.*",
+    "build-stories": "build/*.html"
+  },
+  "scripts": {
+    "clean-dist": "rm -rf dist",
+    "make-dist": "mkdirp dist",
+    "copy": "cp -R src/ dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run build && npm run build-stories && npm run watch",
+    "watch": "npm-watch",
+    "build": "npm run clean-dist && npm run make-dist && npm run copy",
+    "build-stories": "cd build && ./index.js && cd ..",
+    "release": "npm version patch && npm run build-stories && npm run build"
+  },
+  "author": "Paul Lewis",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cheerio": "^0.22.0",
+    "glob": "^7.1.1",
+    "mkdirp": "^0.5.1",
+    "npm-watch": "^0.1.6"
+  }
+}

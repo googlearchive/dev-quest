@@ -1,0 +1,29 @@
+application: dev-quests
+version: v20161129
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+skip_files:
+- (^node_modules/.*)
+- (^.git/.*)
+- .DS_Store
+
+handlers:
+- url: /static/images/(.*)
+  static_files: dist/static/images/\1
+  expiration: "365d"
+  upload: dist/static/images/(.*)
+  secure: always
+  application_readable: true
+
+- url: .*
+  script: main.app
+  secure: always
+  # login: admin
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: latest
